@@ -26,7 +26,6 @@ for(let i=0; i<deleteBtn.length; i++) {
     deleteBtn[i].addEventListener('click', function () {
         const parentNode = this.parentNode;
         const lastNode = parentNode.lastElementChild;
-        console.log(lastNode['value']);
 
         fetch(`/api/file/delete/${lastNode['value']}`, {
            method: 'GET',
