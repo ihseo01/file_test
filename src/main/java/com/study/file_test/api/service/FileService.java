@@ -99,14 +99,16 @@ public class FileService {
     public boolean delete(long id) {
         FileInfo fileInfo = fileRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
-        boolean isDeleted = false;
 
         if (fileInfo != null) {
-            fileRepository.deleteById(id); // 파일 정보도 삭제
-
-            File file = new File(filePath + "/" + fileInfo.getSaveName());
-            isDeleted = file.delete(); // 파일 삭제
+            fileRepository.deleteById(id); // 파일 정보 삭제
         }
-        return isDeleted;
+        return fileInfo != null && deleteFile(fileInfo);
+    }
+
+    // 실제 파일 삭제
+    private boolean deleteFile(FileInfo fileInfo) {
+        File file = new File(filePath + "/" + fileInfo.getSaveName());
+        return file.delete();
     }
 }

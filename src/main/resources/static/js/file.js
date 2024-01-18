@@ -20,3 +20,21 @@ if (uploadBtn) {
             })
     });
 }
+
+const deleteBtn = document.getElementsByClassName('delete-btn');
+for(let i=0; i<deleteBtn.length; i++) {
+    deleteBtn[i].addEventListener('click', function () {
+        const parentNode = this.parentNode;
+        const lastNode = parentNode.lastElementChild;
+        console.log(lastNode['value']);
+
+        fetch(`/api/file/delete/${lastNode['value']}`, {
+           method: 'GET',
+        })
+            .then((response) => {
+                console.log(response);
+                alert('파일이 삭제되었습니다.');
+                location.replace('/fileList');
+            });
+    });
+}

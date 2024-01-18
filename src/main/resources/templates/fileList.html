@@ -24,7 +24,8 @@
             <div class="card-body">
                 <p class="card-text" th:text="${item.getOriginalName()}"></p>
                 <a th:href="@{/api/file/download/{id}(id=${item.id})}" class="btn btn-primary">다운로드</a>
-                <a th:href="@{/api/file/delete/{id}(id=${item.id})}" class="btn btn-danger">삭제</a>
+                <input type="button" th:value="삭제" class="btn btn-danger delete-btn" />
+                <input type="hidden" th:value="${item.id}"/>
             </div>
         </div>
     </div>
